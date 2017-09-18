@@ -126,12 +126,6 @@ class html_outputer(object):
 
 		fh = codecs.open(data['title'],'a',encoding='utf-8')
 		fh.write(data['content'])
-		# self.datas.append(data)
-
-	def outputer_html(self):
-		fout = open('output.html','w')
-		for data in self.datas:
-			fout.write(data)
 		
 
 class SpiderMain(object):
@@ -162,7 +156,6 @@ class SpiderMain(object):
 				count += 1
 				if count == 100:
 					break
-		# self.outputer.outputer_html()
 
 
 if __name__ == '__main__':
