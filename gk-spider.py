@@ -79,7 +79,7 @@ class html_parser(object):
 
 	def __get_new_urls(self,page_url,soup):
 		new_urls = set()
-		links = soup.find_all('a',href=re.compile(r"http://www.gaokao.com/e/2017\d+/\S+.shtml"))
+		links = soup.find_all('a',href=re.compile(r"http://www.gaokao.com/e/201[76543]\d+/\S+.shtml"))
 		for link in links:
 			new_url = link['href']
 			new_urls.add(new_url)
@@ -148,14 +148,13 @@ class SpiderMain(object):
 				new_urls,new_data = self.parser.parser(new_url,html_cont)
 				self.urls.add_new_urls(new_urls)
 				self.outputer.collect_data(new_data)
+				count += 1
+				if count == 100:
+					break
 
 			except Exception as e:
 				print 'craw failed %d %s' %(count,str(e))
 
-			finally:
-				count += 1
-				if count == 100:
-					break
 
 
 if __name__ == '__main__':
